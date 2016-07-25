@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">maptest</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="m2">м\u00B2</string>
+    <string name="dot">\u25CF</string>
+    <string name="room">-комн.</string>
+    <string name="btn_markers">Маркеры</string>
+    <string name="btn_tracking">Трекинг</string>
+</resources>
