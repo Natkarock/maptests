@@ -44,6 +44,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected GoogleMap mMap;
     private HashMap<Marker, Flat> flatMap;
     private Realm realm;
+    private Flat curentFlat;
     @BindView(R.id.imgFlat)
     ImageView imgFlat;
     @BindView(R.id.btnLike)
@@ -119,11 +120,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public boolean onMarkerClick(Marker marker) {
         Flat flat = flatMap.get(marker);
-        if (flat != null) {
+        if (flat != null&&flat!=curentFlat) {
             if (cardFlat.getVisibility() == View.GONE) {
                 cardFlat.setVisibility(View.VISIBLE);
                 showCard();
             }
+            likeButton.setLiked(false);
             progressBar.setVisibility(View.VISIBLE);
             Picasso.with(this).cancelRequest(imgFlat);
             Picasso.with(this).load(flat.getImage()).into(imgFlat, new Callback() {
@@ -142,6 +144,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             String dot = " " + getString(R.string.dot) + " ";
             txtInfo.setText(flat.getRoom_count() + getString(R.string.room) + dot + flat.getSquare() + getString(R.string.m2) +
                     dot + flat.getFloor());
+            curentFlat = flat;
         }
         return false;
     }

@@ -50,7 +50,8 @@ public class MapTrackingActivity extends FragmentActivity implements OnMapReadyC
         mMap = googleMap;
         mMap.getUiSettings().setZoomControlsEnabled(true);
         marker= addMarker(startPont);
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(startPont,12));
+        LatLng moscow = new LatLng(55.754081, 37.6203273);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(moscow, 12));
         setSubscription();
     }
 
@@ -79,17 +80,19 @@ public class MapTrackingActivity extends FragmentActivity implements OnMapReadyC
                         addMarker(getIntermediatePoint(ax,ay,bx,by,t));
                     }
                 });
+
     }
 
     public Marker addMarker(LatLng latLng){
         if (marker!=null){
             marker.remove();
         }
-         marker= mMap.addMarker(new MarkerOptions()
+         marker = mMap.addMarker(new MarkerOptions()
                 .position(latLng)
                 .alpha(0.7f).draggable(false).icon(BitmapDescriptorFactory.fromResource(R.drawable.terminal_icon)));
         return marker;
     }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -110,7 +113,5 @@ public class MapTrackingActivity extends FragmentActivity implements OnMapReadyC
         double x = (1 - t) * alatRad + t * blatRad;
         double y = (1 - t) * alonRad + t * blonRad;
         return new LatLng(x,y);
-
-
     }
 }

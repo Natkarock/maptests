@@ -40,7 +40,8 @@
         android:layout_gravity="right"
         map:like_drawable="@drawable/heart_on"
         map:unlike_drawable="@drawable/heart_icon"
-        android:id="@+id/btnLike"></com.like.LikeButton>
+        android:id="@+id/btnLike"
+        ></com.like.LikeButton>
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
